@@ -1,0 +1,6 @@
+data/com.cathive.Secretary.desktop.in
+data/com.cathive.Secretary.metainfo.xml.in
+data/com.cathive.Secretary.gschema.xml
+src/main.js
+src/window.js
+src/window.ui

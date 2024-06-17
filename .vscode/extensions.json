@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "editorconfig.editorconfig",
+        "mesonbuild.mesonbuild",
+        "redhat.vscode-xml"
+    ]
+}

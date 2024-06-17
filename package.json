@@ -1,0 +1,8 @@
+{
+  "$comment": "Only needed for TypeScript capabilities during development time.",
+  "name": "@private/secretary",
+  "private": true,
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

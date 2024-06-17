@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="Adw" version="1.0"/>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="gio" version="2.0"/>
+  <template class="SecretaryPreferencesDialog" parent="AdwPreferencesDialog">
+    <property name="title" translatable="true">Preferences</property>
+    <child>
+      <object class="AdwPreferencesPage" id="behavior_page">
+        <property name="title" translatable="true">Assistant Behavior</property>
+        <property name="icon-name">channel-secure-symbolic</property>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="true">Safety</property>
+            <child>
+              <object class="AdwSwitchRow" id="safe_search_switch">
+                <property name="title" translatable="true">Filter possible harmful contents</property>
+                <property name="subtitle" translatable="true">Block contents that might contain offensive and/or inappropriate content.</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwPreferencesPage" id="ollama_page">
+        <property name="title" translatable="true">Ollama configuration</property>
+        <property name="icon-name">TODO-ollama-icon</property>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="true">Server</property>
+            <child>
+              <object class="AdwEntryRow" id="ollama_url_entry">
+                <property name="title" translatable="true">Base URL</property>
+                <property name="input-purpose">GTK_INPUT_PURPOSE_URL</property>
+                <property name="show-apply-button">true</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="true">Language Model</property>
+            <child>
+              <object class="AdwEntryRow" id="ollama_model_entry">
+                <property name="title" translatable="true">Model name</property>
+                <property name="show-apply-button">true</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="true">Options</property>
+            <child>
+              <object class="AdwSpinRow" id="ollama_option_seed_entry">
+                <property name="title" translatable="true">Seed</property>
+                <property name="adjustment">
+                  <object class="GtkAdjustment">
+                    <property name="lower">0</property>
+                    <property name="upper">1024</property>
+                    <property name="step-increment">1</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSpinRow" id="ollama_option_temperature_entry">
+                <property name="title" translatable="true">Temperature</property>
+                <property name="digits">1</property>
+                <property name="adjustment">
+                  <object class="GtkAdjustment">
+                    <property name="lower">0</property>
+                    <property name="upper">1</property>
+                    <property name="step-increment">0.1</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
