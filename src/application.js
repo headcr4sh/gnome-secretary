@@ -54,7 +54,7 @@ export class SecretaryApplication extends Adw.Application {
     }, SecretaryApplication);
   }
 
-    static new() {
+    static newWithDefaults() {
       return new SecretaryApplication({
         application_id: constants.APPLICATION_ID,
         flags: Gio.ApplicationFlags.DEFAULT_FLAGS,
@@ -64,7 +64,7 @@ export class SecretaryApplication extends Adw.Application {
 
     /**
      *
-     * @param {Adw.Application.ConstructorProperties & {
+     * @param {Partial<Adw.Application.ConstructorProperties> & {
      *    settings: Gio.Settings,
      * }} args
      */
@@ -88,7 +88,7 @@ export class SecretaryApplication extends Adw.Application {
           application_name: 'secretary',
           application_icon: this.application_id,
           developer_name: 'Benjamin P. Jung',
-          version: '0.1.0',
+          version: constants.APPLICATION_VERSION,
           developers: [
             'Benjamin P. Jung'
           ],

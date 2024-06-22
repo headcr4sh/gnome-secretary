@@ -1,4 +1,4 @@
-/* constants.js
+/* message.js
  *
  * Copyright 2024 Benjamin P. Jung
  *
@@ -18,7 +18,27 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-export const APPLICATION_ID = pkg.name;
-export const APPLICATION_VERSION = pkg.version;
+import GObject from 'gi://GObject';
+import Gtk from 'gi://Gtk?version=4.0';
 
-export const SETTINGS_PATH = `/${APPLICATION_ID.replaceAll('.', '/').toLowerCase()}`;
+export class Message extends Gtk.ListBoxRow {
+
+  static {
+    GObject.registerClass({
+      GTypeName: 'Message',
+      Template: 'resource:///com/cathive/Secretary/message.ui',
+      InternalChildren: [
+        'content',
+      ],
+    }, Message);
+  }
+
+    /**
+     * @param {Partial<Gtk.ListBoxRow.ConstructorProperties> & {
+     * }|undefined} params
+     */
+    constructor(params) {
+        super(params);
+    }
+}
+

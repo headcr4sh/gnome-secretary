@@ -50,13 +50,13 @@ export class SecretaryWindow extends Adw.ApplicationWindow {
   }
 
     /**
-     * @param {Adw.ApplicationWindow.ConstructorProperties & {
+     * @param {Partial<Adw.ApplicationWindow.ConstructorProperties> & {
      *   ollama_client: OllamaClient
      * }|undefined} params
      */
     constructor(params) {
         super(params);
-
+      // TODO Use list box row replacement
         this._input_entry.connect('activate', (/** @type {Gtk.Entry} */ target) => {
           const buffer = target.get_buffer();
           const content = buffer.get_text().trim();
@@ -64,11 +64,26 @@ export class SecretaryWindow extends Adw.ApplicationWindow {
           if (content != null && content !== '') {
             // TODO Send message.
             // TODO REMOVE ME BEGIN
-            console.log('Sending message: ' + content);
+            /** @type {Gtk.ListBox} */
+            const list_box = this._messages_list_box;
+            list_box.insert(new Gtk.ListBoxRow({
+              selectable: false,
+              child: new Gtk.Label({
+                label: `User: ${content}`,
+              }),
+            }), -1);
+
             (async () => {
               const session = this.ollama_client.session;
-              let req = session.chat(content);
-              console.log((await (req.response())).message.content);
+              const req = session.chat(content);
+              const res = await req.response();
+
+              list_box.insert(new Gtk.ListBoxRow({
+                selectable: false,
+                child: new Gtk.Label({
+                  label: `Assistant: ${res.message.content}`,
+                }),
+              }), -1);
             })();
             // TODO REMOVE ME END
           }

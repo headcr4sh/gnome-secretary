@@ -71,7 +71,7 @@ export function sendAsync(httpSession, uri, request, response, processor) {
       /** @type {Gio.InputStream} */
       let inputStream;
       try {
-        inputStream = self.send_finish(result);
+        inputStream = (self ?? httpSession).send_finish(result);
       } catch (err) {
         reject(err);
         return;
@@ -92,10 +92,10 @@ export function sendAsync(httpSession, uri, request, response, processor) {
 
       /** @type {Gio.AsyncReadyCallback<Gio.InputStream>} */
       const processBytes = (source_object, res, data) => {
-        const chunk = source_object.read_bytes_finish(res);
+        const chunk = source_object?.read_bytes_finish(res) ?? new GLib.Bytes(null);
         buf += decoder.decode(chunk.toArray());
         let lfIdx = buf.indexOf('\n');
-        // Check if rcv buffer contains any ne line characters already.
+        // Check if rcv buffer contains any new line characters already.
         // If so, parse every line as JSON and process it.
         while (lfIdx !== -1) {
           const obj = JSON.parse(buf.substring(0, lfIdx));
@@ -104,7 +104,7 @@ export function sendAsync(httpSession, uri, request, response, processor) {
           lfIdx = buf.indexOf('\n');
         }
         if (chunk.get_size() > 0) {
-          source_object.read_bytes_async(CHUNK_BUFFER_SIZE, GLib.PRIORITY_DEFAULT, cancellable, processBytes);
+          source_object?.read_bytes_async(CHUNK_BUFFER_SIZE, GLib.PRIORITY_DEFAULT, cancellable, processBytes);
         } else {
           resolve(response);
           return;

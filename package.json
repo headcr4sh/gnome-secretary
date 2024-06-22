@@ -3,6 +3,6 @@
   "name": "@private/secretary",
   "private": true,
   "devDependencies": {
-    "typescript": "^5.4.5"
+    "typescript": "^5.6.3"
   }
 }

@@ -1,3 +1,4 @@
 [submodule "src/types/gi"]
 	path = src/types/gi
 	url = https://gitlab.gnome.org/BrainBlasted/gi-typescript-definitions.git
+

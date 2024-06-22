@@ -21,14 +21,14 @@
 
 import { SecretaryApplication } from './application.js';
 
-pkg.initGettext();
-
 /**
  * Main loop entry point.
- * @param {string[] | undefined}
+ * @param {string[] | undefined} argv
  * @returns {Promise<number>}
  */
 export function main(argv=undefined) {
-  const application = SecretaryApplication.new();
+  const application = SecretaryApplication.newWithDefaults();
+
+  // @ts-expect-error gi.ts can't generate this, but it exists.
   return application.runAsync(argv);
 }

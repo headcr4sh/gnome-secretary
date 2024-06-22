@@ -162,8 +162,6 @@ export class OllamaChatSession extends GObject.Object {
    */
   chat(content, images=undefined) {
 
-    const contentLength = content.length;
-
     /** @type {OllamaMessage} */
     const requestMessage = {
       role: 'user',
@@ -207,6 +205,7 @@ export class OllamaChatSession extends GObject.Object {
         this.#messages.push(output.message); // append response to conversation history
       }
     });
+
     return response;
   }
 
@@ -256,7 +255,7 @@ export class OllamaClient extends GObject.Object {
 
   /**
    *
-   * @param {GObject.ObjectConstructParam & {
+   * @param {Partial<GObject.ObjectConstructParam> & {
    *   settings: Gio.Settings
    * }} params
    */
@@ -264,8 +263,8 @@ export class OllamaClient extends GObject.Object {
     super(params);
     this.#behavior = [
       {
-      'role': 'system',
-      'content': 'Your name is Secretary. You shall introduce yourself as a personal assistant, if asked.'
+        'role': 'system',
+        'content': 'Your name is Secretary. You shall introduce yourself as a personal assistant, if asked.'
       },
     ];
     this.#session = this.#resetChatSession();
