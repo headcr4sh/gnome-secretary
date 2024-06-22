@@ -61,7 +61,7 @@ export const SecretaryPreferencesDialog = GObject.registerClass({
 
 
     /**
-     * @param {Adw.PreferencesDialog.ConstructorProperties & {
+     * @param {Partial<Adw.PreferencesDialog.ConstructorProperties> & {
      *   settings_backend_common?: Gio.Settings
      *   settings_backend_ollama?: Gio.Settings
      * }} params

@@ -37,7 +37,9 @@
                 </layout>
                 <child>
                   <object class="GtkListBox" id="messages_list_box">
-                    <property name="selection-mode">GTK_SELECTION_NONE</property>
+                    <property name="hexpand">true</property>
+                    <property name="vexpand">true</property>
+                    <property name="selection-mode">none</property>
                     <style>
                       <class name="boxed-list-separate"/>
                     </style>

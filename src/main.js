@@ -25,7 +25,7 @@ pkg.initGettext();
 
 /**
  * Main loop entry point.
- * @param {string[] | undefined}
+ * @param {string[] | undefined} argv
  * @returns {Promise<number>}
  */
 export function main(argv=undefined) {

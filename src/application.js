@@ -64,7 +64,7 @@ export class SecretaryApplication extends Adw.Application {
 
     /**
      *
-     * @param {Adw.Application.ConstructorProperties & {
+     * @param {Partial<Adw.Application.ConstructorProperties> & {
      *    settings: Gio.Settings,
      * }} args
      */
